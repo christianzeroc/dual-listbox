@@ -325,6 +325,8 @@ class DualListbox {
      */
     _createList(header, list) {
         let result = document.createElement('div');
+        result.classList.add('col-lg-5');
+
         result.appendChild(header);
         result.appendChild(list);
         return result;
@@ -438,7 +440,7 @@ class DualListbox {
             this.dualListbox.classList.add(this.select.id);
         }
 
-        this.dualListBoxContainer = document.createElement('div col-lg-5');
+        this.dualListBoxContainer = document.createElement('div');
         this.dualListBoxContainer.classList.add(CONTAINER_ELEMENT);
 
         this.availableList = document.createElement('ul');
