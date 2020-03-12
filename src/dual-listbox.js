@@ -1,6 +1,6 @@
 const MAIN_BLOCK = 'dual-listbox';
 
-const CONTAINER_ELEMENT = 'dual-listbox__container row';
+const CONTAINER_ELEMENT = 'dual-listbox__container';
 const AVAILABLE_ELEMENT = 'dual-listbox__available';
 const SELECTED_ELEMENT = 'dual-listbox__selected';
 const TITLE_ELEMENT = 'dual-listbox__title';
@@ -442,6 +442,7 @@ class DualListbox {
 
         this.dualListBoxContainer = document.createElement('div');
         this.dualListBoxContainer.classList.add(CONTAINER_ELEMENT);
+        this.dualListBoxContainer.classList.add('row');
 
         this.availableList = document.createElement('ul');
         this.availableList.classList.add(AVAILABLE_ELEMENT);
