@@ -336,8 +336,9 @@ class DualListbox {
      * Creates the buttons to add/remove the selected item.
      */
     _createButtons() {
-        this.buttons = document.createElement('div col-lg-2');
+        this.buttons = document.createElement('div');
         this.buttons.classList.add(BUTTONS_ELEMENT);
+        this.buttons.classList.add('col-lg-2');
 
         this.add_all_button = document.createElement('button');
         this.add_all_button.classList.add(BUTTON_ELEMENT);
