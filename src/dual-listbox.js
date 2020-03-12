@@ -1,6 +1,6 @@
 const MAIN_BLOCK = 'dual-listbox';
 
-const CONTAINER_ELEMENT = 'dual-listbox__container';
+const CONTAINER_ELEMENT = 'dual-listbox__container row';
 const AVAILABLE_ELEMENT = 'dual-listbox__available';
 const SELECTED_ELEMENT = 'dual-listbox__selected';
 const TITLE_ELEMENT = 'dual-listbox__title';
@@ -334,7 +334,7 @@ class DualListbox {
      * Creates the buttons to add/remove the selected item.
      */
     _createButtons() {
-        this.buttons = document.createElement('div');
+        this.buttons = document.createElement('div col-lg-2');
         this.buttons.classList.add(BUTTONS_ELEMENT);
 
         this.add_all_button = document.createElement('button');
@@ -438,7 +438,7 @@ class DualListbox {
             this.dualListbox.classList.add(this.select.id);
         }
 
-        this.dualListBoxContainer = document.createElement('div');
+        this.dualListBoxContainer = document.createElement('div col-lg-5');
         this.dualListBoxContainer.classList.add(CONTAINER_ELEMENT);
 
         this.availableList = document.createElement('ul');

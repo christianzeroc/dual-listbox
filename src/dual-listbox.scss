@@ -12,7 +12,7 @@
   .dual-listbox__search {
     border: 1px solid #ddd;
     padding: 10px;
-    max-width: 300px;
+    max-width: 100%;
   }
 
   .dual-listbox__available,
@@ -21,7 +21,7 @@
     height: 300px;
     overflow-y: auto;
     padding: 0;
-    width: 300px;
+    width: 100%;
     margin-top: 0;
     -webkit-margin-before: 0;
   }
