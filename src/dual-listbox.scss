@@ -9,7 +9,7 @@
     flex-wrap: wrap;
   }
 
-  .dual-listbox__search {
+  .dual-listbox__available__search, .dual-listbox__selected__search {
     border: 1px solid #ddd;
     padding: 10px;
     max-width: 100%;
