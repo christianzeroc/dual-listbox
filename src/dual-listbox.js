@@ -7,7 +7,8 @@ const TITLE_ELEMENT = 'dual-listbox__title';
 const ITEM_ELEMENT = 'dual-listbox__item';
 const BUTTONS_ELEMENT = 'dual-listbox__buttons';
 const BUTTON_ELEMENT = 'dual-listbox__button';
-const SEARCH_ELEMENT = 'dual-listbox__search';
+const SEARCH_ELEMENT_AVAILABLE = 'dual-listbox__available__search';
+const SEARCH_ELEMENT_SELECTED = 'dual-listbox__selected__search';
 
 const SELECTED_MODIFIER = 'dual-listbox__item--selected';
 
@@ -132,8 +133,8 @@ class DualListbox {
      * @param {Object} searchString
      * @param dualListbox
      */
-    searchLists(searchString, dualListbox) {
-        let items = dualListbox.querySelectorAll(`.${ITEM_ELEMENT}`);
+    searchLists(searchString, dualListbox, listElement) {
+        let items = dualListbox.querySelectorAll(`.${listElement} .${ITEM_ELEMENT}`);
         let lowerCaseSearchString = searchString.toLowerCase();
 
         for (let i = 0; i < items.length; i++) {
@@ -299,8 +300,11 @@ class DualListbox {
      * Adds the actions to the search input.
      */
     _addSearchActions() {
-        this.search.addEventListener('change', (event) => this.searchLists(event.target.value, this.dualListbox));
-        this.search.addEventListener('keyup', (event) => this.searchLists(event.target.value, this.dualListbox));
+        this.search_available.addEventListener('change', (event) => this.searchLists(event.target.value, this.dualListbox, AVAILABLE_ELEMENT));
+        this.search_available.addEventListener('keyup', (event) => this.searchLists(event.target.value, this.dualListbox, AVAILABLE_ELEMENT));
+
+        this.search_selected.addEventListener('change', (event) => this.searchLists(event.target.value, this.dualListbox, SELECTED_ELEMENT));
+        this.search_selected.addEventListener('keyup', (event) => this.searchLists(event.target.value, this.dualListbox, SELECTED_ELEMENT));
     }
 
     /**
@@ -310,11 +314,16 @@ class DualListbox {
     _buildDualListbox(container) {
         this.select.style.display = 'none';
 
-        this.dualListBoxContainer.appendChild(this._createList(this.availableListTitle, this.availableList));
-        this.dualListBoxContainer.appendChild(this.buttons);
-        this.dualListBoxContainer.appendChild(this._createList(this.selectedListTitle, this.selectedList));
+        let availableContainer = this._createList(this.availableListTitle, this.availableList);
+        let selectedContainer = this._createList(this.selectedListTitle, this.selectedList);
 
-        this.dualListbox.appendChild(this.search);
+        this.dualListBoxContainer.appendChild(availableContainer);
+        this.dualListBoxContainer.appendChild(this.buttons);
+        this.dualListBoxContainer.appendChild(selectedContainer);
+
+        availableContainer.prepend(this.search_available);
+        selectedContainer.prepend(this.search_selected);
+
         this.dualListbox.appendChild(this.dualListBoxContainer);
 
         container.insertBefore(this.dualListbox, this.select);
@@ -391,9 +400,13 @@ class DualListbox {
      * Creates the search input.
      */
     _createSearch() {
-        this.search = document.createElement('input');
-        this.search.classList.add(SEARCH_ELEMENT);
-        this.search.placeholder = this.searchPlaceholder;
+        this.search_available = document.createElement('input');
+        this.search_available.classList.add(SEARCH_ELEMENT_AVAILABLE);
+        this.search_available.placeholder = this.searchPlaceholder;
+
+        this.search_selected = document.createElement('input');
+        this.search_selected.classList.add(SEARCH_ELEMENT_SELECTED);
+        this.search_selected.placeholder = this.searchPlaceholder;
     }
 
     /**
